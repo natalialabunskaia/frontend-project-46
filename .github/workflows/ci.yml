@@ -20,27 +20,29 @@ jobs:
 
     steps:
       # Check-out repository under GitHub workspace
-      # https://github.com/actions/checkout
       - uses: actions/checkout@v4
-        # Step's name
+        name: Checkout code
+
+      # Set up Node.js
       - name: Use Node.js ${{ matrix.node-version }}
-        # Configures the node version used on GitHub-hosted runners
-        # https://github.com/actions/setup-node
         uses: actions/setup-node@v4
-        # The Node.js version to configure
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+
+      # Install dependencies
       - run: make install
+
+      # Run linting
       - run: make lint
+
+      # Run tests
       - run: make test
+
+      # Test & publish code coverage to Code Climate
       - name: Test & publish code coverage
-        #   # Publish code coverage on Code Climate
-        #   # https://github.com/paambaati/codeclimate-action
         uses: paambaati/codeclimate-action@v5.0.0
-        #   # Add Code Climate secret key
-        env:
-        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: make test-coverage
-        debug: true
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}

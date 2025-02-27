@@ -1,10 +1,10 @@
 gendiff:
 	node bin/gendiff.js
-install: deps-install
-	npx simple-git-hooks
 
-run:
-	bin/nodejs-package.js 10
+install: deps-install hooks
+
+hooks:
+	npx simple-git-hooks
 
 deps-install:
 	npm ci --legacy-peer-deps

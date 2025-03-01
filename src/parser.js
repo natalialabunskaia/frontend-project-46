@@ -1,14 +1,18 @@
 import fs from 'node:fs';
-import path, { dirname } from 'node:path';
-import { fileURLToPath } from 'url';
+import path from 'node:path';
+import yaml from 'js-yaml';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-export const readFile = (pathToFile) => {
-  const absolutePath = path.resolve(__dirname, pathToFile);
+const parse = (pathToFile) => {
+  const extname = path.extname(pathToFile);
+  const absolutePath = path.resolve(process.cwd(), pathToFile);
   const data = fs.readFileSync(absolutePath, 'utf-8');
-  return data;
+  switch (extname) {
+    case '.yaml':
+    case '.yml':
+      return yaml.load(data);
+    default:
+      return JSON.parse(data);
+  }
 };
 
-export const parse = (data) => JSON.parse(data);
+export default parse;

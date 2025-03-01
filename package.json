@@ -20,16 +20,16 @@
   "homepage": "https://github.com/natalialabunskaia/frontend-project-46#readme",
   "dependencies": {
     "commander": "^13.1.0",
+    "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
   "simple-git-hooks": {
-  "pre-commit": "npx eslint .",
-  "pre-push": "npm test"
+    "pre-commit": "npx eslint .",
+    "pre-push": "npm test"
   },
-
   "devDependencies": {
     "@babel/preset-env": "^7.26.9",
     "@eslint/create-config": "^1.0.0",

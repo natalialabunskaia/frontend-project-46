@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import { readFile, parse } from './parser.js';
+import parse from './parser.js';
 
 const gendiff = (data1, data2) => {
-  const parsedData1 = parse(readFile(data1));
-  const parsedData2 = parse(readFile(data2));
+  const parsedData1 = parse(data1);
+  const parsedData2 = parse(data2);
   const keys = _.sortBy(_.union(Object.keys(parsedData1), Object.keys(parsedData2)));
   const result = keys.map((key) => {
     if (parsedData1[key] === parsedData2[key]) {

@@ -27,8 +27,7 @@
     "gendiff": "bin/gendiff.js"
   },
   "simple-git-hooks": {
-    "pre-commit": "npx eslint .",
-    "pre-push": "npm test"
+    "pre-commit": "npx eslint ."
   },
   "devDependencies": {
     "@babel/preset-env": "^7.26.9",

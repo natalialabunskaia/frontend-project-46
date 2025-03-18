@@ -1,25 +1,22 @@
 import _ from 'lodash';
 
-const stringify = (coll, depth = 1) => {
-  const spaces = depth * 4 - 2;
-  const str = ' '.repeat(spaces);
-  if (!_.isObject(coll)) {
+const indent = (depth) => ' '.repeat(depth * 4 - 2);
+
+const stringify = (coll, depth) => {
+  const str = indent(depth);
+  if (!_.isObject(coll) || _.isArray(coll)) {
     return `${coll}`;
   }
   const entries = Object.entries(coll);
-  const lines = entries.map(([key, value]) => {
-    if (_.isObject(value) && !_.isArray(value)) {
-      return `${str}  ${key}: ${stringify(value, depth + 1)}`;
-    }
-    return `${str}  ${key}: ${value}`;
-  });
+  const lines = entries.map(
+    ([key, value]) => `${str}  ${key}: ${stringify(value, depth + 1)}`
+  );
   return `{\n${lines.join('\n')}\n${str.slice(0, -2)}}`;
 };
 
 const stylish = (tree, depth = 1) => {
   const result = tree.map((element) => {
-    const spaces = depth * 4 - 2;
-    const str = ' '.repeat(spaces);
+    const str = indent(depth);
     switch (element.type) {
       case 'nested':
         return `${str}  ${element.key}: {\n${stylish(element.children, depth + 1)}\n  ${str}}`;

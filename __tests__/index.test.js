@@ -2,7 +2,6 @@ import { readFileSync } from 'fs';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import genDiff from '../src/index.js';
-import plain from '../src/formatters/plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,7 +11,7 @@ test('gendiff should return correct difference for json files (stylish)', () => 
   const file2Path = path.join(__dirname, '..', '__fixtures__', 'file2.json');
   const expectedPath = path.join(__dirname, '..', '__fixtures__', 'expected_stylish.txt');
 
-  const result = genDiff(file1Path, file2Path);
+  const result = genDiff(file1Path, file2Path, 'stylish');
   const expected = readFileSync(expectedPath, 'utf-8');
   expect(result).toBe(expected);
 });
@@ -22,7 +21,7 @@ test('gendiff should return correct difference for yml/yaml files (stylish)', ()
   const file2Path = path.join(__dirname, '..', '__fixtures__', 'file2.yaml');
   const expectedPath = path.join(__dirname, '..', '__fixtures__', 'expected_stylish.txt');
 
-  const result = genDiff(file1Path, file2Path);
+  const result = genDiff(file1Path, file2Path, 'stylish');
   const expected = readFileSync(expectedPath, 'utf-8');
   expect(result).toBe(expected);
 });
@@ -32,7 +31,7 @@ test('gendiff should return correct difference for json files (plain)', () => {
   const file2Path = path.join(__dirname, '..', '__fixtures__', 'file2.json');
   const expectedPath = path.join(__dirname, '..', '__fixtures__', 'expected_plain.txt');
 
-  const result = genDiff(file1Path, file2Path, plain);
+  const result = genDiff(file1Path, file2Path, 'plain');
   const expected = readFileSync(expectedPath, 'utf-8');
   expect(result).toBe(expected);
 });
@@ -42,7 +41,7 @@ test('gendiff should return correct difference for yml/yaml files (plain)', () =
   const file2Path = path.join(__dirname, '..', '__fixtures__', 'file2.yaml');
   const expectedPath = path.join(__dirname, '..', '__fixtures__', 'expected_plain.txt');
 
-  const result = genDiff(file1Path, file2Path, plain);
+  const result = genDiff(file1Path, file2Path, 'plain');
   const expected = readFileSync(expectedPath, 'utf-8');
   expect(result).toBe(expected);
 });

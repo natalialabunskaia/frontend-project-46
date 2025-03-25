@@ -36,6 +36,7 @@ npm link
 ## 🛠 Usage
 
 **Run the command with two file paths:**
+
 gendiff file1.json file2.json
 
 **Output Formats:**

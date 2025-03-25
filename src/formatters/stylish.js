@@ -9,7 +9,7 @@ const stringify = (coll, depth) => {
   }
   const entries = Object.entries(coll);
   const lines = entries.map(
-    ([key, value]) => `${str}  ${key}: ${stringify(value, depth + 1)}`
+    ([key, value]) => `${str}  ${key}: ${stringify(value, depth + 1)}`,
   );
   return `{\n${lines.join('\n')}\n${str.slice(0, -2)}}`;
 };

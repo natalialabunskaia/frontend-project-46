@@ -17,6 +17,7 @@ Supports **JSON** and **YAML** file formats, and multiple output formats:
 - **JSON** (structured format for further processing)  
 
 ## 🚀 Installation  
+
 1. Clone the repository:  
 
    git clone https://github.com/natalialabunskaia/frontend-project-46.git
@@ -34,20 +35,20 @@ npm link
 
 ## 🛠 Usage
 
-1. Run the command with two file paths:
+**Run the command with two file paths:**
 gendiff file1.json file2.json
 
-2. Output Formats:
+**Output Formats:**
 
-1. Stylish (default):
+**1. Stylish (default):**
 
 gendiff file1.yml file2.yml
 
-2. Plain text:
+**2. Plain text:**
 
 gendiff --format plain file1.json file2.json
 
-3. JSON format:
+**3. JSON format:**
 
 gendiff --format json file1.yml file2.yml
 

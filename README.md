@@ -23,36 +23,35 @@ Supports **JSON** and **YAML** file formats, and multiple output formats:
 
    cd frontend-project-46
 
-Install dependencies:
+2. Install dependencies:
 
 make install
 
-Link the package (optional):
+3. Link the package (optional):
 
 npm link
 
 
-🛠 Usage
+## 🛠 Usage
 
-
-Run the command with two file paths:
+1. Run the command with two file paths:
 gendiff file1.json file2.json
 
-Output Formats:
+2. Output Formats:
 
-Stylish (default):
+1. Stylish (default):
 
 gendiff file1.yml file2.yml
 
-Plain text:
+2. Plain text:
 
 gendiff --format plain file1.json file2.json
 
-JSON format:
+3. JSON format:
 
 gendiff --format json file1.yml file2.yml
 
-📷 Demo:
+## 📷 Demo:
 
 [![asciicast](https://asciinema.org/a/Lwg1lwdlPGnCuGOucPkwDXqjj.svg)](https://asciinema.org/a/Lwg1lwdlPGnCuGOucPkwDXqjj)
 

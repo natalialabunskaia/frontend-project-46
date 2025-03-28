@@ -30,7 +30,7 @@ const stylish = (tree) => {
         case 'changed':
           return `${str}- ${element.key}: ${stringify(element.value1, depth + 1)}\n${str}+ ${element.key}: ${stringify(element.value2, depth + 1)}`;
         default:
-          return '';
+          throw new Error(`Unexpected type: ${element.type}`);
       }
     });
     return result.join('\n');

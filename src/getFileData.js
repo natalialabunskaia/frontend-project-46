@@ -1,18 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import yaml from 'js-yaml';
+import parce from './parce.js';
 
-const parse = (pathToFile) => {
+const getFileData = (pathToFile) => {
   const extname = path.extname(pathToFile);
   const absolutePath = path.resolve(process.cwd(), pathToFile);
   const data = fs.readFileSync(absolutePath, 'utf-8');
-  switch (extname) {
-    case '.yaml':
-    case '.yml':
-      return yaml.load(data);
-    default:
-      return JSON.parse(data);
-  }
+  return parce(data, extname);
 };
 
-export default parse;
+export default getFileData;

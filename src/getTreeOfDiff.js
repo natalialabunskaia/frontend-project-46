@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const treeOfDiff = (coll1, coll2) => {
+const getTreeOfDiff = (coll1, coll2) => {
   const keys = _.sortBy(_.union(Object.keys(coll1), Object.keys(coll2)));
   const result = keys.map((key) => {
     const value1 = coll1[key];
@@ -9,7 +9,7 @@ const treeOfDiff = (coll1, coll2) => {
     if (_.isObject(value1) && _.isObject(value2)) {
       return {
         key,
-        children: treeOfDiff(value1, value2),
+        children: getTreeOfDiff(value1, value2),
         type: 'nested',
       };
     }
@@ -48,4 +48,4 @@ const treeOfDiff = (coll1, coll2) => {
   return result;
 };
 
-export default treeOfDiff;
+export default getTreeOfDiff;

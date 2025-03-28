@@ -49,7 +49,7 @@ test('gendiff should return correct difference for yml/yaml files (plain)', () =
 test('gendiff should return correct difference for json files (json)', () => {
   const file1Path = path.join(__dirname, '..', '__fixtures__', 'file1.json');
   const file2Path = path.join(__dirname, '..', '__fixtures__', 'file2.json');
-  const expectedPath = path.join(__dirname, '..', '__fixtures__', 'expected_json.txt');
+  const expectedPath = path.join(__dirname, '..', '__fixtures__', 'expected_json.json');
 
   const result = genDiff(file1Path, file2Path, 'json');
   const expected = readFileSync(expectedPath, 'utf-8');
@@ -59,7 +59,7 @@ test('gendiff should return correct difference for json files (json)', () => {
 test('gendiff should return correct difference for yml/yaml files (json)', () => {
   const file1Path = path.join(__dirname, '..', '__fixtures__', 'file1.yml');
   const file2Path = path.join(__dirname, '..', '__fixtures__', 'file2.yaml');
-  const expectedPath = path.join(__dirname, '..', '__fixtures__', 'expected_json.txt');
+  const expectedPath = path.join(__dirname, '..', '__fixtures__', 'expected_json.json');
 
   const result = genDiff(file1Path, file2Path, 'json');
   const expected = readFileSync(expectedPath, 'utf-8');

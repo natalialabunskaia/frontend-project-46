@@ -2,7 +2,7 @@ import stylish from './stylish.js';
 import plain from './plain.js';
 import json from './json.js';
 
-const formatter = (tree, format) => {
+const formatDiff = (tree, format) => {
   switch (format) {
     case 'stylish':
       return stylish(tree);
@@ -11,8 +11,8 @@ const formatter = (tree, format) => {
     case 'json':
       return json(tree);
     default:
-      return 'Unknown format';
+      throw new Error(`Unexpected format ${format}`);
   }
 };
 
-export default formatter;
+export default formatDiff;

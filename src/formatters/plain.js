@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const valueFormatter = (value) => {
+const formatValue = (value) => {
   if (_.isObject(value)) {
     return '[complex value]';
   }
@@ -10,26 +10,30 @@ const valueFormatter = (value) => {
   return `${value}`;
 };
 
+const getCurrentPath = (path, key) => {
+  if (path === '') {
+    return `${key}`;
+  }
+  return `${path}.${key}`;
+};
+
 const plain = (tree) => {
   const iter = (node, path = '') => {
     const result = node.flatMap((element) => {
-      const currentPath = (value) => {
-        if (value === '') {
-          return `${element.key}`;
-        }
-        return `${value}.${element.key}`;
-      };
+      const currentPath = getCurrentPath(path, element.key);
       switch (element.type) {
         case 'nested':
-          return `${iter(element.children, currentPath(path))}`;
-        case 'deleted':
-          return `Property '${currentPath(path)}' was removed`;
-        case 'added':
-          return `Property '${currentPath(path)}' was added with value: ${valueFormatter(element.value)}`;
-        case 'changed':
-          return `Property '${currentPath(path)}' was updated. From ${valueFormatter(element.value1)} to ${valueFormatter(element.value2)}`;
-        default:
+          return `${iter(element.children, currentPath)}`;
+        case 'unchanged':
           return [];
+        case 'deleted':
+          return `Property '${currentPath}' was removed`;
+        case 'added':
+          return `Property '${currentPath}' was added with value: ${formatValue(element.value)}`;
+        case 'changed':
+          return `Property '${currentPath}' was updated. From ${formatValue(element.value1)} to ${formatValue(element.value2)}`;
+        default:
+          throw new Error(`Unexpected type: ${element.type}`);
       }
     });
     return result.join('\n');

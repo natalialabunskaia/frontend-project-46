@@ -1,6 +1,6 @@
 import yaml from 'js-yaml';
 
-const parce = (data, format) => {
+const parseData = (data, format) => {
   switch (format) {
     case '.yaml':
     case '.yml':
@@ -12,4 +12,4 @@ const parce = (data, format) => {
   }
 };
 
-export default parce;
+export default parseData;
